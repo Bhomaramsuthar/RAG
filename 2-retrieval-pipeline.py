@@ -1,13 +1,14 @@
 from langchain_chroma import Chroma
-from langchain_openai import OpenAIEmbeddings
+# 1. Swapped OpenAI for HuggingFace
+from langchain_huggingface import HuggingFaceEmbeddings
 from dotenv import load_dotenv
 
 load_dotenv()
 
 persistent_directory = "db/chroma_db"
 
-# Load embeddings and vector store
-embedding_model = OpenAIEmbeddings(model="text-embedding-3-small")
+# 2. Updated the embedding model here
+embedding_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 db = Chroma(
     persist_directory=persistent_directory,
